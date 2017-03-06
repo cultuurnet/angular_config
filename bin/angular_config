@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'angular_config'
+
+options = {}
+
+angular_config = OptionParser.new do |ac|
+  ac.banner = "Usage: angular_config COMMAND [OPTIONS]"
+  ac.separator  ""
+  ac.separator  "Commands"
+  ac.separator  "     hash: convert values of a JSON hash to hashed representations of the keys"
+  ac.separator  "     resolve: resolve hashed keys in a file with actual values"
+  ac.separator  ""
+  ac.separator  "Options"
+
+  ac.on("-c","--config CONFIG","Configuration file containing source JSON hash") do |config|
+    options[:source_config] = config
+  end
+
+  ac.on("-f","--file FILE","File to resolve") do |file|
+    options[:file] = file
+  end
+
+  ac.on("-h","--help","help") do
+    puts angular_config
+  end
+end
+
+angular_config.parse!
+
+case ARGV[0]
+when "hash"
+  unless options[:source_config].nil?
+    source_config = AngularConfig::Config.load(options[:source_config])
+    puts source_config.hash_values.content.to_json
+  else
+    puts angular_config
+  end
+when "resolve"
+  unless options[:source_config].nil? or options[:file].nil?
+    config_hashed_keys = AngularConfig::Config.load(options[:source_config]).hash_keys
+    puts config_hashed_keys.content
+    scripts = AngularConfig::Source.new(options[:file])
+
+    puts scripts.resolve(config_hashed_keys).content
+  else
+    puts angular_config
+  end
+else
+  puts angular_config
+end

@@ -1,0 +1,5 @@
+require 'json'
+require 'digest/md5'
+require 'angular_config/file'
+require 'angular_config/config'
+require 'angular_config/source'
