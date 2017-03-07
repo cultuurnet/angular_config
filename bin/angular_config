@@ -3,7 +3,7 @@
 require 'optparse'
 require 'angular_config'
 
-options = {:type => 'MD5'}
+options = {:type => 'SHA256'}
 
 angular_config = OptionParser.new do |ac|
   ac.banner = "Usage: angular_config COMMAND [OPTIONS]"

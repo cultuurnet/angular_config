@@ -3,9 +3,9 @@ module AngularConfig
     attr_reader :content
     attr_reader :checksum_type
 
-    def initialize(config = {}, checksum_type = 'MD5')
+    def initialize(config = {}, type = 'SHA256')
       @content = config
-      @checksum_type = checksum_type
+      @checksum_type = type.upcase
     end
 
     def hash_keys
