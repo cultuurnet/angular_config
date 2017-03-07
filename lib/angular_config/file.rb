@@ -12,7 +12,7 @@ module AngularConfig
 
     def content=(data)
       ::File.open(path, "w") do |file|
-        file.write(data.to_json)
+        file.write(data)
       end
     end
   end

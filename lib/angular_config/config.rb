@@ -25,7 +25,7 @@ module AngularConfig
     end
 
     def self.save(data, path)
-      AngularConfig::File.new(path).save(data)
+      AngularConfig::File.new(path).content = data.to_json
     end
   end
 end
