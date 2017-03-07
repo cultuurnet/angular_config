@@ -24,7 +24,7 @@ module AngularConfig
       AngularConfig::Config.new(hashed_values)
     end
 
-    def self.load(path, type = nil)
+    def self.load(path, type = 'SHA256')
       AngularConfig::Config.new(JSON.load(AngularConfig::File.new(path).content), type)
     end
 
