@@ -3,7 +3,7 @@
 require 'optparse'
 require 'angular_config'
 
-options = {}
+options = {:type => 'MD5'}
 
 angular_config = OptionParser.new do |ac|
   ac.banner = "Usage: angular_config COMMAND [OPTIONS]"
@@ -22,6 +22,10 @@ angular_config = OptionParser.new do |ac|
     options[:file] = file
   end
 
+  ac.on("-t","--type TYPE","Checksum type to use") do |type|
+    options[:type] = type
+  end
+
   ac.on("-h","--help","help") do
     puts angular_config
   end
@@ -32,14 +36,14 @@ angular_config.parse!
 case ARGV[0]
 when "hash"
   unless options[:source_config].nil?
-    source_config = AngularConfig::Config.load(options[:source_config])
+    source_config = AngularConfig::Config.load(options[:source_config], options[:type])
     puts source_config.hash_values.content.to_json
   else
     puts angular_config
   end
 when "resolve"
   unless options[:source_config].nil? or options[:file].nil?
-    config_hashed_keys = AngularConfig::Config.load(options[:source_config]).hash_keys
+    config_hashed_keys = AngularConfig::Config.load(options[:source_config], options[:type]).hash_keys
     puts config_hashed_keys.content
     scripts = AngularConfig::Source.new(options[:file])
 
