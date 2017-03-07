@@ -1,20 +1,9 @@
 module AngularConfig
   class Source
-    attr_reader :path
+    attr_reader :content
 
-    def initialize(source_path)
-      @path = AngularConfig::File.new(source_path)
-      @content = ::File.read(path).chomp
-    end
-
-    def content
-      @content
-    end
-
-    def content=(data)
-      ::File.open(path, "w") do |file|
-        file.write(data)
-      end
+    def initialize(content)
+      @content = content
     end
 
     def md5
@@ -26,7 +15,7 @@ module AngularConfig
         if value.is_a?(String)
           self.content.gsub!(key, value)
         else
-          self.content.gsub!("#{key}", value.to_json)
+          self.content.gsub!("\"#{key}\"", value.to_json)
         end
       end
 
@@ -34,12 +23,11 @@ module AngularConfig
     end
 
     def self.load(path)
-      AngularConfig::Source.new AngularConfig::File.new(path)
+      AngularConfig::Source.new AngularConfig::File.new(path).content
     end
 
     def self.save(data, path)
-      AngularConfig::File.new(path).save(data)
+      AngularConfig::File.new(path).content = data
     end
-
   end
 end
