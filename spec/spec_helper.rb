@@ -1,5 +1,6 @@
-require 'angular_config'
+require 'pp'
 require 'fakefs/spec_helpers'
+require 'angular_config'
 
 RSpec.configure do |config|
   config.include FakeFS::SpecHelpers, fakefs: true

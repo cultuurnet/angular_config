@@ -14,9 +14,12 @@ describe AngularConfig::File do
     end
   end
 
-  describe "#save", fakefs: true do
-    FakeFS.activate!
-    FakeFS::FileSystem.clone(RSpec.configuration.fixtures)
-    FakeFS.deactivate!
+  describe "#content=", fakefs: true do
+    it "updates the content of the file" do
+      FakeFS::FileSystem.clone(RSpec.configuration.fixtures)
+      config = AngularConfig::File.new("#{RSpec.configuration.fixtures}/empty_config.json")
+      config.content = '{"foo": "bar"}'
+      expect(File.read("#{RSpec.configuration.fixtures}/empty_config.json")).to eql('{"foo": "bar"}')
+    end
   end
 end
