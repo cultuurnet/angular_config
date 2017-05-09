@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["kristof.willaert@cultuurnet.be"]
 
   spec.summary       = %q{Manage configuration in minified/uglified Angular apps}
-  spec.description   = %q{Manage configuration in minified/uglified Angular apps by swapping out MD5 hashed values}
+  spec.description   = %q{Manage configuration in minified/uglified Angular apps by swapping out cryptographically hashed values}
   spec.homepage      = "https://github.com/cultuurnet/angular_config"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
