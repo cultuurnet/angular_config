@@ -44,10 +44,9 @@ when "hash"
 when "resolve"
   unless options[:source_config].nil? or options[:file].nil?
     config_hashed_keys = AngularConfig::Config.load(options[:source_config], options[:type]).hash_keys
-    puts config_hashed_keys.content
-    scripts = AngularConfig::Source.new(options[:file])
+    file = AngularConfig::Source.load(options[:file])
 
-    puts scripts.resolve(config_hashed_keys).content
+    puts file.resolve(config_hashed_keys).content
   else
     puts angular_config
   end
