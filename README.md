@@ -1,5 +1,5 @@
 # AngularConfig
-[![Build Status](https://travis-ci.org/cultuurnet/angular-config.png)](https://travis-ci.org/cultuurnet/angular-config)
+[![Build Status](https://travis-ci.org/cultuurnet/angular_config.png)](https://travis-ci.org/cultuurnet/angular_config)
 
 This tool allows you to inject a JSON configuration into a minified Angular application. It inserts checksummed versions of the
 configuration keys as values during the build process, and provides a mechanism to exchange these keys with the actual values when deploying.
