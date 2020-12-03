@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name          = "angular_config"
   spec.version       = AngularConfig::VERSION
   spec.authors       = ["Kristof Willaert"]
-  spec.email         = ["kristof.willaert@cultuurnet.be"]
+  spec.email         = ["kristof.willaert@publiq.be"]
 
   spec.summary       = %q{Manage configuration in minified/uglified Angular apps}
   spec.description   = %q{Manage configuration in minified/uglified Angular apps by swapping out cryptographically hashed values}
